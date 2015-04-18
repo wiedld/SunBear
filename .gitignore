@@ -1,5 +1,6 @@
 *pyc
 env
 secrets.sh
-
+/sbenv
+scratchpaper.txt
 .DS_Store

@@ -22,20 +22,57 @@ def handleTok(tokenlist):
 ###############################################################
 ###############################################################
 
+# GENABILITY API stuff
+import requests
+import os
+
+GENABILITY_APP_ID = os.environ['GENABILITY_APP_ID']
+GENABILITY_API_KEY = os.environ['GENABILITY_API_KEY']
+BASE_GENABILITY_URL = 'https://api.genability.com/rest/public/'
+
+
+def get_from_territory(level, territory_name):
+    """This gets data at country, state, county or zipcode level, defined by the 'level'
+    function parameter. State name, specific zipcode, etc. defined by the territory_name param.
+    Data is returned as a JSON object."""
+
+    # parse the input from the front into a request payload
+    if level == "zipcode":
+        payload = {"territoryType": "ZIPCODE"}
+    elif level == "county":
+        payload = {"territoryType": "COUNTY"}
+
+    payload["value"] = territory_name
+
+    # make the request
+    r = requests.get(BASE_GENABILITY_URL, auth=(GENABILITY_APP_ID, GENABILITY_API_KEY), params=payload)
+
+    # try/except in case API returns an error. If error, return msg
+    # Indicating this. If success, return JSON object.
+
+    try:
+        if r.status_code == 200:
+            return r.content
+
+    except:
+        print "We've encountered an issue fetching the data you requested. Please try again."
+        return api_result.status_code
+
+
 # PV WATTS
 #  used python library: https://github.com/mpaolino/pypvwatts
 #  output:  Annual and Monthly solar production kWh
 #  dataset can = tmy2, tmy3, intl (International station data)
-import os
-from pypvwatts import PVWatts
+# import os
+# from pypvwatts import PVWatts
 
-PVWatts.api_key = os.environ["PV_WATTS_KEY"]
-result = PVWatts.request(
-        system_capacity=4, module_type=1, array_type=1,
-        azimuth=190, tilt=30, dataset='tmy2',
-        losses=0.13, lat=40, lon=-105)
+# PVWatts.api_key = os.environ["PV_WATTS_KEY"]
+# result = PVWatts.request(
+#         system_capacity=4, module_type=1, array_type=1,
+#         azimuth=190, tilt=30, dataset='tmy2',
+#         losses=0.13, lat=40, lon=-105)
 
-print "example PV WATTS annual output:", result.ac_annual
+# print "example PV WATTS annual output:", result.ac_annual
 # (wiedld): this API is wired in and working!!!!
 
 ###############################################################

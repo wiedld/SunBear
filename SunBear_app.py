@@ -22,10 +22,24 @@ def get_zipcode_info():
 	level = request.args.get("level")
 	territory_name = request.args.get("territory_name")
 
-	api_response = API.get_from_territory(level=level, territory_name=territory_name)
+	api_response = API.get_territories(level=level, territory_name=territory_name)
 
 	return api_response
 
+
+@app.route("/get_tariffs_by_zip", methods=['GET', 'POST'])
+def get_tariffs_by_zip():
+
+	zipcode = request.json
+	print "this is zipcode", zipcode
+	api_response = API.get_tariffs(zipcode=zipcode)
+
+	return render_template("okay.html")
+
+
+@app.route("/get_tariff_by_region")
+def get_tariffs_by_region():
+	pass
 
 @app.route("/get_county_info")
 def get_county_info(county_name):

@@ -1,14 +1,15 @@
 
-function callApi( event ) {
+
+function callApi( event) {
 	event.preventDefault();
-	console.log("callApi is running");
+	console.log('API func running');
 
-// 	$("#submitBtn").('/get_zipcode_info');
-// };
+	var zipcode = $('#territoryName').val();
+	console.log(zipcode);
 
-	  $.ajax('get_zipcode_info', {
-	    type: 'GET',
-	    data: "",
+	  $.ajax('get_tariffs_by_zip', {
+	    type: 'POST',
+	    data: JSON.stringify(zipcode),
 	    contentType: 'application/json',
 	    success: function(data, status, result){
 	    	console.log("ajax call worked!");
@@ -17,5 +18,6 @@ function callApi( event ) {
 	      $("#resultContainer").html(scenario_result)
 	    }
 	  });
+}
 
 $("#submitBtn").on('click', callApi);

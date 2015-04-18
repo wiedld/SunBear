@@ -25,13 +25,15 @@ def handleTok(tokenlist):
 # GENABILITY API stuff
 import requests
 import os
+from datetime import datetime
+
 
 GENABILITY_APP_ID = os.environ['GENABILITY_APP_ID']
 GENABILITY_API_KEY = os.environ['GENABILITY_API_KEY']
 BASE_GENABILITY_URL = 'https://api.genability.com/rest/public/'
 
 
-def get_from_territory(level, territory_name):
+def get_territories(level, territory_name):
     """This gets data at country, state, county or zipcode level, defined by the 'level'
     function parameter. State name, specific zipcode, etc. defined by the territory_name param.
     Data is returned as a JSON object."""
@@ -54,9 +56,6 @@ def get_from_territory(level, territory_name):
     # try/except in case API returns an error. If error, return msg
     # Indicating this. If success, return JSON object.
 
-    print r.url
-    print "API call returned ", r.status_code
-
     try:
         if r.status_code == 200:
             print "This is the content of the request: ", r.content
@@ -67,6 +66,36 @@ def get_from_territory(level, territory_name):
         print r.content
         return r.status_code
 
+
+def get_tariffs(zipcode):
+    
+    print "here's what was passed to the API function: ", zipcode
+
+    # Get the second parameter:
+    the_date = datetime.now()
+    date_str = str(the_date)
+    date_parameter = date_str[:10]
+
+    # Stick 'em in a dictionary:
+    payload = {}
+    payload["effectiveOn"] = date_parameter
+    payload["zipCode"] = zipcode
+
+    print "these are the URL params: ", payload
+
+    r = requests.get(BASE_GENABILITY_URL + "tariffs", auth=(GENABILITY_APP_ID, GENABILITY_API_KEY), params=payload)
+
+    print r.url
+
+    try:
+        if r.status_code == 200:
+            print "This is the content of the response: ", r.content
+            return r.content
+
+    except:
+        print "We've encountered an issue fetching the data you requested. Please try again."
+        print r.content
+        return r.status_code
 
 
 # get_from_territory(level="zipcode", territory_name="94612")

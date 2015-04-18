@@ -36,27 +36,40 @@ def get_from_territory(level, territory_name):
     function parameter. State name, specific zipcode, etc. defined by the territory_name param.
     Data is returned as a JSON object."""
 
+    print "Calling API..."
+
     # parse the input from the front into a request payload
     if level == "zipcode":
         payload = {"territoryType": "ZIPCODE"}
     elif level == "county":
         payload = {"territoryType": "COUNTY"}
+    elif level == "state":
+        payload = {"territoryType": "STATE"}
 
     payload["value"] = territory_name
 
     # make the request
-    r = requests.get(BASE_GENABILITY_URL, auth=(GENABILITY_APP_ID, GENABILITY_API_KEY), params=payload)
+    r = requests.get(BASE_GENABILITY_URL + "territories", auth=(GENABILITY_APP_ID, GENABILITY_API_KEY), params=payload)
 
     # try/except in case API returns an error. If error, return msg
     # Indicating this. If success, return JSON object.
 
+    print r.url
+    print "API call returned ", r.status_code
+
     try:
         if r.status_code == 200:
+            print "This is the content of the request: ", r.content
             return r.content
 
     except:
         print "We've encountered an issue fetching the data you requested. Please try again."
-        return api_result.status_code
+        print r.content
+        return r.status_code
+
+
+
+# get_from_territory(level="zipcode", territory_name="94612")
 
 
 # PV WATTS
@@ -205,5 +218,6 @@ import os
 Noaa_token = os.environ["NOAA_TOKEN"]
 # print Noaa_token
 # (wiedld): not sure yet if we'll use this api.  TBD - discuss with team.
+
 
 

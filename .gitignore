@@ -4,3 +4,4 @@ secrets.sh
 /sbenv
 scratchpaper.txt
 .DS_Store
+server*

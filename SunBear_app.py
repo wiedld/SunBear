@@ -13,10 +13,18 @@ def index():
 
 
 # Creating routes for the front end to asynchronously call; can alter these as needed
-@app.route("/get_zipcode_info")
-def get_zipcode_info(zipcode_str):
+@app.route("/get_zipcode_info", methods=['GET', 'POST'])
+def get_zipcode_info():
 	"""Will taker a zipcode parameter and return a JSON object to the caller for D3 to parse."""
-	pass
+	
+	print "route has been called..."
+
+	level = request.args.get("level")
+	territory_name = request.args.get("territory_name")
+
+	api_response = API.get_from_territory(level=level, territory_name=territory_name)
+
+	return api_response
 
 
 @app.route("/get_county_info")
@@ -42,5 +50,5 @@ def main():
 if __name__ == "__main__":
     main()
     # app.run(host="0.0.0.0", debug=False)
-    app.run(debug=True)
+    app.run(debug=True, ssl_context=('/Users/amandagilmore/src/SunBear/server.crt', '/Users/amandagilmore/src/SunBear/server.key'))
 

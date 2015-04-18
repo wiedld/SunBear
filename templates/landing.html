@@ -4,6 +4,14 @@
 	<title="AdSherpa">
 </head>
 <body>
+	<form action="/get_zipcode_info">
+		Drill down to this level: <input type="text" id="territoryLevel" name="level"></input>
+		Which territory? e.g. "94612": <input type="text" id="territoryName" name="territory_name">
+		<input type="submit" id="submitBtn">
+	</form>
 	stuff.
+	<div id="resultContainer"></div>
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="/static/user_controls.js"></script>
 </body>
 </html>

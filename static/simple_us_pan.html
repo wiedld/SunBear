@@ -12,6 +12,23 @@
   stroke-linejoin: round;
 }
 
+.tooltip {
+        width: 160px;
+        height: 42px;
+        border: 1px solid #fff;
+        color: black;
+        background-color: #ffffff;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 1px 1px 2px #000;
+        -webkit-box-shadow: 1px 1px 2px #000;
+        box-shadow: 1px 1px 2px #000;
+        text-align: left;
+        font: 12px arial;
+        margin-top: 3px;
+}
+
 .q0-9 { fill:rgb(247,251,255); }
 .q1-9 { fill:rgb(222,235,247); }
 .q2-9 { fill:rgb(198,219,239); }
@@ -58,6 +75,19 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
+function displayToolTip(d){
+        // Show appropriate text in the tooltip.  This will be turned off when 
+        tooltip.style("visibility", "visible");
+        tooltip.style("top", (event.pageY-50)+"px").style("left",(event.pageX-60)+"px");
+        try{
+                tooltip.html(tooltipText.format(d.name,d.nodeInfo.type,d.energyData[myVariableNames[myVariableIndex]]) );
+        }
+        catch(err){
+                tooltip.html(tooltipText.format(d.name,d.nodeInfo.type,"") );		// Some nodes may not have defined energyData for this value
+
+        }
+}
+    
 // Create a scale that maps total tonnage to a radius size between 2 and 30 pixels
 var port_size = d3.scale.linear().domain([0, 252070000]).range([2,30]);
 

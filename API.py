@@ -86,7 +86,7 @@ def data_per_house():
     print "county code:", FIPScounty
 
 
-data_per_house()
+# data_per_house()
 
 
 
@@ -96,7 +96,7 @@ data_per_house()
 # output:   median family income, median home value, avg home size, median age of homeowner, homes with kids, avg year built
 
 
-def data_neighboorhood():
+def data_neighborhood():
     import os
     Zillow_key = os.environ["ZILLOW_ZWSID"]
 
@@ -104,7 +104,9 @@ def data_neighboorhood():
     from xml.dom import minidom
 
     # get data and parse
+    # url_zillow_neighborhood = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id="+Zillow_key+"&zip=94501"
     url_zillow_neighborhood = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id="+Zillow_key+"&state=WA&city=Seattle&neighborhood=Ballard"
+
     response = urlopen(url_zillow_neighborhood)
     dom_zillow_neighborhood = minidom.parse(response)
 
@@ -113,28 +115,79 @@ def data_neighboorhood():
     for node in dom_zillow_neighborhood.getElementsByTagName("attribute"):
         report_type = (handleTok(node.getElementsByTagName("name"))).encode("utf8").strip()
 
-        # neighboorhood values = single family home.
-        if report_type=='Median Single Family Home Value':
+        if report_type=='Median Household Income':
             neighborhood_node = node.childNodes[1].childNodes[0]
-            single_family_home_value = (handleTok(neighborhood_node.getElementsByTagName("value"))).encode("utf8").strip()
+            median_household_income = (handleTok(neighborhood_node.getElementsByTagName("value"))).encode("utf8").strip()
 
-        # neighboorhood values = single family home.
         if report_type=='Median Home Size (Sq. Ft.)':
             neighborhood_node = node.childNodes[1].childNodes[0]
             median_home_size = (handleTok(neighborhood_node.getElementsByTagName("value"))).encode("utf8").strip()
 
-        # neighboorhood values = single family home.
         if report_type=='Avg. Year Built':
             neighborhood_node = node.childNodes[1].childNodes[0]
             avg_yr_built = (handleTok(neighborhood_node.getElementsByTagName("value"))).encode("utf8").strip()
 
+        if report_type=='Average Household Size':
+            neighborhood_node = node.childNodes[1].childNodes[0]
+            avg_household_size = (handleTok(neighborhood_node.getElementsByTagName("value"))).encode("utf8").strip()
 
-    print "Neighborhood value of Single Family Home:", single_family_home_value
+        if report_type=='Owners':
+            neighborhood_node = node.childNodes[1].childNodes[0]
+            owners_pct = (handleTok(neighborhood_node.getElementsByTagName("value"))).encode("utf8").strip()
+
+        if report_type=='Renters':
+            neighborhood_node = node.childNodes[1].childNodes[0]
+            renters_pct = (handleTok(neighborhood_node.getElementsByTagName("value"))).encode("utf8").strip()
+
+
+    print "median_household_income:", median_household_income   # 44512.013
     print "Neighborhood median home size:", median_home_size           # 1197 (test case)
     print "Neighborhood avg yr built:", avg_yr_built      # 1995 (test case)
+    print "avg_household_size:", avg_household_size     # 2.58883240
+    print "owners_pct:", owners_pct                 # 0.66268764
+    print "renters_pct:", renters_pct               # 0.33731236
 
 
-data_neighboorhood()
+
+# data_neighborhood()
+
+
+# get neighborhoods in Alameda CA
+# http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=X1-ZWz1er05pybo5n_2t4xn&state=CA&county=Alameda
+
+
+
+def neighborhoods_in_county():
+    import os
+    Zillow_key = os.environ["ZILLOW_ZWSID"]
+
+    from urllib2 import Request, urlopen, URLError
+    from xml.dom import minidom
+
+    url_zillow_neighborhood = "http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id="+Zillow_key+"&state=CA&county=Alameda"
+
+    response = urlopen(url_zillow_neighborhood)
+    dom_zillow_neighborhood = minidom.parse(response)
+
+
+    # need only region tags in the list
+    list_regions = dom_zillow_neighborhood.getElementsByTagName("list")
+
+    for node in dom_zillow_neighborhood.getElementsByTagName("region"):
+        name = (handleTok(node.getElementsByTagName("name"))).encode("utf8").strip()
+        latitude = (handleTok(node.getElementsByTagName("latitude"))).encode("utf8").strip()
+        longitude = (handleTok(node.getElementsByTagName("longitude"))).encode("utf8").strip()
+
+        print "NEW NEIGHBORHOOD"
+        print name
+        print latitude
+        print longitude
+
+
+
+neighborhoods_in_county()
+
+
 
 
 

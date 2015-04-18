@@ -16,6 +16,9 @@ Session = None
 # function connect() at bottom...before main.
 ## in python shell:  -i model.py > s=connect() >
 
+class neighborhood_demo(Base):
+    __tablename__ = "Neighborhood"
+
 
 
 

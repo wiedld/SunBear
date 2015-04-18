@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<br>
+<br>
+
+<main class="container-fluid">
+
+  <div class="row">
+
+      <!-- SECTION #1 = LEFT SIDE WITH D3 ELEMENT -->
+      <section class="col-sm-6 col-sm-offset-1">
+        <div class="row">
+
+
+
+        <!-- Beginning of d3 template (modified) -->
+          <div style="margin-top:30px;min-height:500px;">
+
+              <div style="width:610px;height:610px;" id="canvas">
+                  <svg id="svg" style="width:100%;height:100%">
+                      <g id="settings">
+                          <filter id="dropshadow" height="160%">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+                            <!-- stdDeviation is how much to blur -->
+                            <feOffset dx="0" dy="3" result="offsetblur"/>
+                            <!-- how much to offset -->
+                            <feMerge>
+                              <feMergeNode/>
+                             <!--  this contains the offset blurred image -->
+                              <feMergeNode in="SourceGraphic"/>  <!-- this contains the element that the filter is applied to -->
+                            </feMerge>
+                          </filter>
+                      </g>
+                      <g id="stroke"></g>
+                      <g id="color"></g>
+                      <g id="title"></g>
+                      <g id="value"></g>
+                  </svg>
+              </div>
+          </div>
+
+         <!-- Javascript -->
+
+              <!-- jQuery -->
+              <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+              <!-- D3js -->
+              <script src="http://d3js.org/d3.v3.min.js"></script>
+              <!-- Local javascript modules -->
+              <script src="/static/current-mix/scripts.js"></script>
+
+  <!-- closing bootstrap container row and col (spacing)             -->
+        </div> <!-- row -->
+      </section>  <!-- col 6, offset 1 -->
+
+
+     <!-- SECTION #2 = RIGHT SIDE WITH DESCRIPTION -->
+    <section class="col-sm-4" id="description">
+
+            <div class="row vertical-center-row">
+                <div class="thumbnail">
+                  <!-- img src="..." alt="..."> -->
+                  <div class="caption">
+                    <h3>California's Power Distribution</h3>
+                    <p>
+                      The movement of electric power across a given geographic area, is coordinated by the regional system operator -- affectionately dubbed "the grid".  In California, the grid is called CAISO, pronounced Cal-ISO.  (Why?  Why not?)
+                      <br>
+                      <br>
+                      Many electric grids are also open markets, with the trading of power positions.  Utilities purchase electricity in order to supply their customers, and power plants sell their power openly on the market.  The job of CAISO is to make sure that everybody plays by the rules, and to make sure that the "lights stay on" no matter what the market may bring.
+                      <br>
+                      <br>
+                      To the left is a display showing the current % of fuel mix used in CAISO to power all our homes and business.  This power is coordinated by the CAISO every 5 minutes, and the ratios to the left will also updated every 5 mintues to reflect this change.  At any moment of the day, you can look at this image and answer a simple question:
+                      <br>
+                      <br>
+                          If I flip the switch,<br>
+                              what kind of juice will I get?
+
+                    </p>
+                   <!--  <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+                  </div>
+                </div>
+
+            </div>
+    </section>
+
+
+    <section class="col-sm-1">
+        <!-- right hand space/column -->
+    </section>
+
+
+  </div>  <!-- row -->
+</main> <!-- container -->
+
+{% endblock %}
+

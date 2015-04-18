@@ -1,0 +1,112 @@
+
+@lightcolor: #ffffff;
+@bgcolor: #13558F; /*#901434;*/
+@bgcolor-selected: darken(@bgcolor,10%);
+@bgcolor-footer: black;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  box-shadow:         @style @c;
+  -webkit-box-shadow: @style @c;
+  -moz-box-shadow:    @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+
+
+body {
+    padding-top: 50px !important;
+}
+
+
+nav {
+    .box-shadow(0 0 1px, rgba(255,255,255,50));
+}
+
+
+.navbar {
+    background-color:@bgcolor;
+    border-color:@bgcolor-selected;
+}
+
+.navbar .caret {
+    border-top-color:white !important;
+    border-bottom-color:white !important;
+}
+
+.navbar-inverse .navbar-nav>li>a , .navbar-brand {
+    color:white !important;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus
+, .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus
+{
+background-color:@bgcolor-selected;
+}
+
+header {
+    background-color:@bgcolor;
+    margin-top:0px !important;
+    color:@lightcolor;
+
+    .container {
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+
+    a, a:hover {
+        color:@lightcolor;
+    }
+}
+
+
+
+footer {
+    color:@lightcolor;
+    background:@bgcolor-footer;
+    padding-top:50px;
+    padding-bottom:50px;
+}
+
+#content {
+    background:#fdfdfd;
+    border-bottom:2px solid #eeeeee;
+    margin-bottom:20px;
+}
+
+
+.small {
+    color:@lightcolor !important;
+}
+
+
+.modal-backdrop.fade {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.modal-backdrop.fade.in {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+.navbar-toggle span {
+    color:white !important;
+}
+
+
+@media (max-width: 1000px) {
+    .less-important { display:none; }
+}
+
+
+tr.isnew td {
+    font-weight:bold !important;
+}
+
+
+
+.table-striped tbody tr.highlight td { background-color: #114488; color:white; }
+
+.nav > li.disabled a {
+    visibility:hidden;
+}

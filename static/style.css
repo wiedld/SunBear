@@ -1,0 +1,182 @@
+/*STYLING FOR ALL element*/
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+.btn-primary{
+  background-image: none;
+  background-color: rgb(55, 53, 134);
+  transition: all 0.5s ease;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: white;
+  color: rgb(55, 53, 134);
+
+}
+
+.tooltip {
+        width: 160px;
+        height: 42px;
+        border: 1px solid #fff;
+        color: black;
+        background-color: #ffffff;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 1px 1px 2px #000;
+        -webkit-box-shadow: 1px 1px 2px #000;
+        box-shadow: 1px 1px 2px #000;
+        text-align: left;
+        font: 12px arial;
+        margin-top: 3px;
+}
+
+
+
+/*fill:none was in the original d3 for the topojson maps, not sure why.  It was screwing up rendering of other d3 elements -- so it is commented out.*/
+.application{
+  /*fill: none;*/
+  color: black;
+}
+
+.front-page{
+  background-image: url("/static/img/electric_grid.jpg");
+  position: absolute;   /*pulls out of normal flow, reassign to top left*/
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
+
+
+
+/*STYLING FOR INDEX PAGE*/
+html, body, .container {
+    height: 100%;
+    font-family: 'Martel Sans', sans-serif;
+}
+.container {
+    display: table;
+    vertical-align: middle;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.navbar.navbar-default.navbar-topoE {
+    background-color: #333366;
+    background-image: url("/static/img/denim.png");
+    z-index: 1;
+    /*background-image: url("/static/img/grey_wash_wall.png");*/
+}
+
+.navbar.navbar-default.navbar-topoE .navbar-brand {
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+
+.jumbotron{
+  background-color: rgba(238, 238, 238, 0.75);
+}
+
+
+
+
+  /*STYLING FOR COUNTY MAP*/
+#counties {
+  fill: #aaa;
+}
+
+#counties .active {
+  fill: orange;
+}
+
+#county-borders {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+
+
+  /*STYLING FOR USA MAP*/
+
+#states {
+  fill: #aaa;
+}
+
+#states .active {
+  fill: orange;
+}
+
+#state-borders {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+
+
+
+/*STYLING FOR SLIDERS*/
+
+
+.d3-slider-horizontal {
+    height: .8em;
+}
+
+.d3-slider-handle {
+    position: absolute;
+    width: 1.2em;
+    height: 1.2em;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    background: #eee;
+    background: linear-gradient(to bottom, #eee 0%, #ddd 100%);
+    z-index: 3;
+}
+
+
+.d3-slider {
+    position: relative;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 0.7em;
+    border: 1px solid black;
+    z-index: 2
+    fill: white;
+}
+
+.slider-label{
+  padding: none;
+  font-size: 1.2em;
+}
+
+.d3-slider-axis path {
+  fill:none;
+}
+
+
+
+
+/*FUEL DONUT*/
+
+#fuel-donut{
+  width: 40%;
+  margin: 0 auto;
+}
+
+

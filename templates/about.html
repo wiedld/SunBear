@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<!-- Make container spacing standard across pages -->
+<main class="container-fluid">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <section class="container" style="height:700px">
+        <div class="row" style="height:50%">
+            <div class="col-lg-12">
+                <div class="row ">
+                    <div class="col-sm-8 col-xs-offset-2">
+                        <div class="jumbotron">
+                          <h2>Technologies and the Stack</h2><br>
+                          <p>TopoE utilizes open source data provided by the federal government (EIA) and the California electric grid (CAISO).  <br><br>
+                          Technologies include python and flask, javascript (D3, AJAX,JQuery), SQLAlchemy and SQLite3, web scraping, api, pandas data munging, binary decision tree, machine learning, HTML5, CSS, jinja.</p>
+                          <p><!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- FIRST ROW - of explanation. -->
+  <div class="row" id="about-1" style="height:700px">
+    <section class="col-sm-6 col-sm-offset-1">
+      <div class="row">
+      <!-- Inserted Image -->
+        <img src="/static/img/tree.jpg" style="height:600px">
+<!-- closing bootstrap container row and col (spacing)             -->
+      </div> <!-- row -->
+    </section>  <!-- col 7, offset 1 -->
+
+<!-- adding another bootstrap element (for description) -->
+    <section class="col-sm-4" id="description">
+
+            <div class="row vertical-center-row">
+                <div class="thumbnail"><!-- keep the thumbnail formatting -->
+                  <div class="caption">
+                    <h3>Calculating Scenarios with a BDT</h3>
+                    <p>
+                      Binary decision trees are a quick way to assess several conditions, in order to reach the conclusion (the leaves).  For the "Run Scenario" feature, the fuel mix is compared (at each node level) to a predetermined threshold for the fuel mix in order to determine the outcome.  <br><br>
+
+                      The left and right child nodes correspond to below or above each threshold (respectively), for each part of the fuel mix.  Node iteration occurs through recursion, with the final leaf being return up through each recursive function (bubbling up) in order to be the final result returned.<br><br>
+
+                      The binary decision tree is easily expanded upon with additional conditions, as necessary, and returns both the outcome and the alert state (for styling class).
+                    </p>
+                  </div>
+                </div>
+
+            </div>
+    </section>
+
+  </div>  <!-- row -->
+
+
+
+
+
+
+<!-- SECOND ROW - of explanation. -->
+  <div class="row" id="about-2" style="height:700px">
+    <section class="col-sm-4 col-sm-offset-1" id="description">
+
+            <div class="row vertical-center-row">
+                <div class="thumbnail"> <!-- keep the thumbnail formatting -->
+                  <div class="caption">
+                    <h3>Basic Machine Learning</h3>
+                    <p>
+                      The current fuel mix for California is based upon a combination of realtime data (obtained via web scraping), historic data (obtained via API or uploaded from csv), and machine learning (scikit linear regression).<br><br>
+
+                      There was three data points available every 5-10 minutes in realtime via the California electric grid (CAISO): the amount of solar, the amount of wind, and the total amount of power needed (system demand).  The remaining fuel mixture was calculated using a two-staged linear regression model.<br><br>
+
+                      Hourly historic data is available for hydro and nuclear, and had a realtime % predicted based upon the current solar, wind, and system demand.  Natural gas, coal, and the remaining fuels were predicted based upon the available governmental dataset which are based upon the monthly production history.<br><br>
+
+                      Prior to production release, the linear regression models may be updated using additional variables with likely correlation, (e.g. fuel pricing, LMP, etc), which are available on a 5 minute to hourly basis from CAISO.
+                    </p>
+                  </div>
+                </div>
+
+            </div>
+    </section>
+
+
+    <section class="col-sm-6">
+      <div class="row">
+
+      <!-- Inserted Image -->
+          <img src="/static/img/ml_fun.jpg" style="height:600px">
+<!-- closing bootstrap container row and col (spacing)             -->
+      </div> <!-- row -->
+    </section>  <!-- col 7, offset 1 -->
+
+<!-- adding another bootstrap element (for description) -->
+  </div>  <!-- row -->
+
+
+
+
+
+
+
+<!-- THIRD ROW - of explanation. -->
+  <div class="row" id="about-1" style="height:700px">
+    <section class="col-sm-6 col-sm-offset-1">
+      <div class="row">
+      <!-- Inserted Image -->
+        <img src="/static/img/tasks_run.png" style="width:500px">
+<!-- closing bootstrap container row and col (spacing)             -->
+      </div> <!-- row -->
+    </section>  <!-- col 7, offset 1 -->
+
+<!-- adding another bootstrap element (for description) -->
+    <section class="col-sm-4" id="description">
+
+            <div class="row vertical-center-row">
+                <div class="thumbnail"><!-- keep the thumbnail formatting -->
+                  <div class="caption">
+                    <h3>Open Data, Web scrapers, and API</h3>
+                    <p>
+                      Data is a central feature of this web application.  Obtaining, storing, rapid data munging, and selective choice of data structures - these are the essential considerations in the software architecture.<br><br>
+
+                      The source of this data is a combination of federally available datasets from the Energy Information Administration (EIA), and the California electric grid (CAISO).  Raw data formats were csv, zipped xmls from API calls, and web scraped elements.  Persistent data was stored in a sqlite3 database (to be upgraded to PostGreSQL for deployment), and pandas for rapid data munging.<br><br>
+
+                      Two packages were created, in order to keep a clear seperation of functionality - a feature which makes for easier code navigation and maintenance.  A tasks package to the modules which obtain data and/or update the database, and a calculations package for programs which perform data munging and calculations.
+                    </p>
+                  </div>
+                </div>
+
+            </div>
+    </section>
+
+  </div>  <!-- row -->
+
+
+
+
+</main> <!-- container -->
+
+{% endblock %}
+

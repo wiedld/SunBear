@@ -1,0 +1,27 @@
+{
+"type":"Topology",
+"objects":{
+    "CA_counties":{
+        "type":"GeometryCollection",
+        "geometries":[
+            {"type":"Polygon",
+            "properties":{"name":"003"},
+            "id":"003",
+            "arcs":[[0,1,2,3,4,5]]
+            },
+            {"type":"Polygon",
+            "properties":{"name":"005"},
+            "id":"005",
+            "arcs":[[6,-6,7,8,9]]
+            }
+            ...many more of these polygons.  1 per county?
+
+
+            #  I believe this last geometry, a multigon, is the state of California itself.
+
+            {"type":"MultiPolygon",
+            "properties":{"name":"075"},
+            "id":"075",
+            "arcs":[[[-142,187]],[[188]],[[189,-66]],[[190,-70]],[[191,-72]],[[-89,192]],[[193]]]}]}},"arcs":[[[4219,6510],[5,3],[34,25],[27,20],[1,1],[38,28],[3,0]
+            ....
+            [-2,3],[-5,1],[-1,4]]],"transform":{"scale":[0.0010279407940794092,0.0009476309630963095],"translate":[-124.409591,32.534156]}}

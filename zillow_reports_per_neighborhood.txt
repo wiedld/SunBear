@@ -1,0 +1,75 @@
+report type: Zillow Home Value Index
+report type: Median Single Family Home Value
+report type: Median Condo Value
+report type: Median 2-Bedroom Home Value
+report type: Median 3-Bedroom Home Value
+report type: Median 4-Bedroom Home Value
+report type: Percent Homes Decreasing
+report type: Percent Listing Price Reduction
+report type: Median List Price Per Sq Ft
+report type: Median List Price
+report type: Median Sale Price
+report type: Homes For Sale
+report type: Homes Recently Sold
+report type: Property Tax
+report type: Turnover (Sold Within Last Yr.)
+report type: Median Value Per Sq Ft
+report type: 1-Yr. Change
+report type: Homes For Sale By Owner
+report type: New Construction
+report type: Foreclosures
+report type: Owners
+report type: Renters
+report type: Median Home Size (Sq. Ft.)
+report type: Avg. Year Built
+report type: Single-Family Homes
+report type: Condos
+report type: <1900
+report type: >2000
+report type: 1900-1919
+report type: 1920-1939
+report type: 1940-1959
+report type: 1960-1979
+report type: 1980-1999
+report type: <1000sqft
+report type: >3600sqft
+report type: 1000-1400sqft
+report type: 1400-1800sqft
+report type: 1800-2400sqft
+report type: 2400-3600sqft
+report type: Condo
+report type: Other
+report type: SingleFamily
+report type: Own
+report type: Rent
+report type: Median Household Income
+report type: Single Males
+report type: Single Females
+report type: Median Age
+report type: Homes With Kids
+report type: Average Household Size
+report type: Average Commute Time (Minutes)
+report type: >=70s
+report type: 0s
+report type: 10s
+report type: 20s
+report type: 30s
+report type: 40s
+report type: 50s
+report type: 60s
+report type: <10min
+report type: >=60min
+report type: 10-20min
+report type: 20-30min
+report type: 30-45min
+report type: 45-60min
+report type: NoKids
+report type: WithKids
+report type: Divorced-Female
+report type: Divorced-Male
+report type: Married-Female
+report type: Married-Male
+report type: Single-Female
+report type: Single-Male
+report type: Widowed-Female
+report type: Widowed-Male

@@ -1,0 +1,16 @@
+BeautifulSoup==3.2.1
+Flask==0.10.1
+Jinja2==2.7.3
+MarkupSafe==0.23
+SQLAlchemy==1.0.0
+Werkzeug==0.10.4
+itsdangerous==0.24
+lxml==3.4.3
+numpy==1.9.2
+pandas==0.16.0
+pypvwatts==2.0.0
+python-dateutil==2.4.2
+pytz==2015.2
+requests==2.6.0
+six==1.9.0
+wsgiref==0.1.2

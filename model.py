@@ -73,7 +73,7 @@ class Geographic(Base):
 
 
 
-class zillow_demo(Base):
+class Zillow_demo(Base):
     """from zillow API"""
     __tablename__ = "Zillow_demos"
     id = Column(Integer, primary_key=True)
@@ -93,6 +93,20 @@ class zillow_demo(Base):
     decommissioned = Column(String(10))
     estimated_population = Column(Integer)
     notes = Column(String(100))
+
+
+
+class zillow_neighborhood(Base):
+    """from zillow API"""
+    __tablename__ = "zillow_neighborhoods"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(30))    # is unique per row
+    latitude = Column(Float)
+    longitude = Column(Float)
+
+
+
+
 
 ######################################################################
 

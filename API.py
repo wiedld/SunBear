@@ -90,6 +90,8 @@ def data_per_house():
 
 
 
+
+
 ### DETAILS PER NEIGHBORHOOD (or census track) ###
 # http://www.zillow.com/howto/api/GetDemographics.htm
 # census track data.
@@ -152,12 +154,18 @@ def data_neighborhood():
 # data_neighborhood()
 
 
+
+
+
+
 # get neighborhoods in Alameda CA
 # http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=X1-ZWz1er05pybo5n_2t4xn&state=CA&county=Alameda
 
 
 
 def neighborhoods_in_county():
+    import model
+
     import os
     Zillow_key = os.environ["ZILLOW_ZWSID"]
 
@@ -183,6 +191,21 @@ def neighborhoods_in_county():
         print latitude
         print longitude
 
+        try:
+            session=model.connect()
+            Zdemo_obj = model.zillow_neighborhood()
+
+            Zdemo_obj.name = name
+            Zdemo_obj.latitude = float(latitude)
+            Zdemo_obj.longitude = float(longitude)
+
+            session.add(Zdemo_obj)
+            session.commit()
+        except:
+            print "Error for row data:", name
+            f = open('log_file.txt','a')
+            f.write("\nError.  failure for row:"+str(name))
+            f.close
 
 
 neighborhoods_in_county()

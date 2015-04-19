@@ -36,7 +36,7 @@ def load_geographics():
             except:
                 print "Error for row data:", row
                 f = open('log_file.txt','a')
-                f.write("\nError.  CAISO_daily_api, Demand data, failure for row:"+str(row))
+                f.write("\nError.  failure for row:"+str(row))
                 f.close
 
 
@@ -79,8 +79,8 @@ def load_demographics():
 
 def main():
     """this contains all the different functions for seeding.  Comment out when seeding is complete"""
-    # load_geographics()
-    # load_demographics()
+    load_geographics()
+    load_demographics()
 
 
 

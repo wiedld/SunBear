@@ -79,8 +79,8 @@ def load_demographics():
 
 def main():
     """this contains all the different functions for seeding.  Comment out when seeding is complete"""
-    load_geographics()
-    load_demographics()
+    # load_geographics()
+    # load_demographics()
 
 
 

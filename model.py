@@ -77,22 +77,18 @@ class Zillow_demo(Base):
     """from zillow API"""
     __tablename__ = "Zillow_demos"
     id = Column(Integer, primary_key=True)
-    zipcode = Column(String(15))    # is unique per row
-    type_addy = Column(String(100))
-    primary_city = Column(String(30))
-    acceptable_cities = Column(String(100))
-    unacceptable_cities = Column(String(100))
-    state = Column(String(2))
-    county = Column(String(30))
-    timezone = Column(String(30))
-    area_codes = Column(String(3))
-    latitude = Column(Float)
-    longitude = Column(Float)
-    world_region = Column(String(30))
-    country = Column(String(2))           # select only for US
-    decommissioned = Column(String(10))
-    estimated_population = Column(Integer)
-    notes = Column(String(100))
+    neighborhood = Column(String(30))    # is unique per row
+    median_household_income = Column(Float)
+    median_home_size = Column(Integer)
+    avg_yr_built = Column(Integer)
+    avg_household_size = Column(Float)
+    owners_pct = Column(Float)
+    renters_pct = Column(Float)
+
+    def __repr__(self):
+        """Show info about object"""
+        return "<neighborhood: %s, median_household_income: %s, median_home_size: %s, avg_yr_built: %s, avg_household_size: %s, owners pct: %s, renters pct: %s>" % (self.neighborhood, str(self.median_household_income), str(self.median_home_size), str(self.avg_yr_built), str(self.avg_household_size), str(self.owners_pct), str(self.renters_pct))
+
 
 
 

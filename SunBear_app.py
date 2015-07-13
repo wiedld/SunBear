@@ -7,9 +7,9 @@ app = Flask(__name__)
 app.secret_key = os.environ["flask_app_key"]
 
 
-@app.route("/")
-def index():
-    pass
+@app.route("/test")
+def test_index():
+    return render_template("test_index.html")
 
 
 

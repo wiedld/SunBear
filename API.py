@@ -98,7 +98,7 @@ def data_per_house():
 # output:   median family income, median home value, avg home size, median age of homeowner, homes with kids, avg year built
 
 
-def data_neighborhood():
+def data_neighborhood(neighborhood):
     import os
     Zillow_key = os.environ["ZILLOW_ZWSID"]
 
@@ -106,8 +106,10 @@ def data_neighborhood():
     from xml.dom import minidom
 
     # get data and parse
-    # url_zillow_neighborhood = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id="+Zillow_key+"&zip=94501"
-    url_zillow_neighborhood = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id="+Zillow_key+"&state=WA&city=Seattle&neighborhood=Ballard"
+    # DON"T USE ZIP CODE DATA == missing most of the below fields.
+    # that is why we are usign neighborhood names
+
+    url_zillow_neighborhood = "http://www.zillow.com/webservice/GetDemographics.htm?zws-id="+Zillow_key+"&state=WA&city=Seattle&neighborhood="+neighborhood
 
     response = urlopen(url_zillow_neighborhood)
     dom_zillow_neighborhood = minidom.parse(response)
@@ -150,11 +152,43 @@ def data_neighborhood():
     print "renters_pct:", renters_pct               # 0.33731236
 
 
-
-# data_neighborhood()
-
+    return median_household_income, median_home_size, avg_yr_built, avg_household_size, owners_pct, renters_pct
 
 
+
+
+def populate_db():
+    import model
+
+    # data_neighborhood()
+    Alameda_neighborhoods = ["Oakland","Fremont","Hayward","Berkeley","San Leandro","Alameda", "Pleasanton", "Union City", "Castro Valley", "Newark", "Dublin", "San Lorenzo", "Albany", "Piedmont", "Emeryville", "Sunol", "Canyon"]
+
+    for area in Alameda_neighborhoods:
+        mhi, mhs, ayb, ahs, opct, rpct = data_neighborhood(area)
+        try:
+            session=model.connect()
+            Zdemo_obj = model.Zillow_demo()
+
+            Zdemo_obj.neighborhood = str(area)
+            Zdemo_obj.median_household_income = float(mhi)
+            Zdemo_obj.median_home_size = int(mhs)
+            Zdemo_obj.avg_yr_built = int(ayb)
+            Zdemo_obj.avg_household_size = float(ahs)
+            Zdemo_obj.owners_pct = float(opct)
+            Zdemo_obj.renters_pct = float(rpct)
+
+            print Zdemo_obj
+
+            session.add(Zdemo_obj)
+            session.commit()
+        except:
+            print "Error for area data:", area
+            f = open('log_file.txt','a')
+            f.write("\nError.  failure for area:"+str(area))
+            f.close
+
+
+# populate_db()
 
 
 
@@ -208,7 +242,7 @@ def neighborhoods_in_county():
             f.close
 
 
-neighborhoods_in_county()
+# neighborhoods_in_county()
 
 
 
